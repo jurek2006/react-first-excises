@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import "./App.css";
-import { Clicker } from "./components/Clicker";
+import { TaskPicker } from "./components/TaskPicker";
 
 class App extends Component {
     render() {
         return (
             <div className="App">
-                <Clicker name="Jurek" />
-                <Clicker name="Franek" />
+                <TaskPicker />
             </div>
         );
     }
