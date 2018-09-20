@@ -5,21 +5,36 @@ export class TaskPicker extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            pickedTask: null
+            pickedTask: null,
+            tasks: [
+                "Kurs Node",
+                "Kurs React",
+                "Projekt Pomidorek App",
+                "Organizacyjne",
+                "Inne"
+            ]
         };
     }
 
     handleClick(task) {
-        this.setState({ pickedTask: task });
+        this.setState({
+            pickedTask: task
+        });
     }
 
-    renderBtn(taskName) {
+    renderTasks() {
+        const { tasks } = this.state;
         return (
-            <TaskPickBtn
-                taskName={taskName}
-                isDisabled={this.state.pickedTask}
-                onClick={() => this.handleClick(taskName)}
-            />
+            <div>
+                {tasks.map(taskName => (
+                    <TaskPickBtn
+                        taskName={taskName}
+                        key={taskName}
+                        isDisabled={this.state.pickedTask}
+                        onClick={() => this.handleClick(taskName)}
+                    />
+                ))}
+            </div>
         );
     }
 
@@ -43,13 +58,7 @@ export class TaskPicker extends Component {
                         "Nie wybrano"
                     )}
                 </div>
-                <div>
-                    {this.renderBtn("Kurs Node")}
-                    {this.renderBtn("Kurs React")}
-                    {this.renderBtn("Projekt Pomidorek App")}
-                    {this.renderBtn("Organizacyjne")}
-                    {this.renderBtn("Inne")}
-                </div>
+                <div>{this.renderTasks()}</div>
             </div>
         );
     }
