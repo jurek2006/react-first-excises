@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { TaskPickBtn } from "./TaskPickBtn";
+import { TaskManager } from "./TaskManager";
 
 export class TaskPicker extends Component {
     constructor(props) {
@@ -22,7 +23,12 @@ export class TaskPicker extends Component {
         });
     }
 
-    renderTasks() {
+    handleAddTaskClick(e) {
+        e.preventDefault();
+        console.log(this);
+    }
+
+    renderTasksBtns() {
         const { tasks } = this.state;
         return (
             <div>
@@ -58,7 +64,15 @@ export class TaskPicker extends Component {
                         "Nie wybrano"
                     )}
                 </div>
-                <div>{this.renderTasks()}</div>
+                <div>{this.renderTasksBtns()}</div>
+                <div>
+                    {
+                        <TaskManager
+                            tasks={this.state.tasks}
+                            onAddTaskClick={this.handleAddTaskClick.bind(this)}
+                        />
+                    }
+                </div>
             </div>
         );
     }

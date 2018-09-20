@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./App.css";
+// import "./App.css";ś
 import { TaskPicker } from "./components/TaskPicker";
 
 class App extends Component {
