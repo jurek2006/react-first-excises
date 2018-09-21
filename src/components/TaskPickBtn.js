@@ -4,7 +4,7 @@ import React from "react";
 export function TaskPickBtn(props) {
     return (
         <button disabled={props.isDisabled} onClick={props.onClick}>
-            {props.taskName}
+            {props.task.name}
         </button>
     );
 }

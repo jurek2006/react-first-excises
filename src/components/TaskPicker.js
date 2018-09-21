@@ -19,9 +19,9 @@ export class TaskPicker extends Component {
         };
     }
 
-    handleClick(task) {
+    handleTaskClick(pickedTask) {
         this.setState({
-            pickedTask: task
+            pickedTask: pickedTask
         });
     }
 
@@ -47,10 +47,10 @@ export class TaskPicker extends Component {
             <div>
                 {tasks.map(task => (
                     <TaskPickBtn
-                        taskName={task.name}
+                        task={task}
                         key={task.id}
                         isDisabled={this.state.pickedTask}
-                        onClick={() => this.handleClick(task.name)}
+                        onClick={() => this.handleTaskClick(task)}
                     />
                 ))}
             </div>
@@ -64,7 +64,7 @@ export class TaskPicker extends Component {
                     Wybrane zadanie:{" "}
                     {this.state.pickedTask ? (
                         <span>
-                            {this.state.pickedTask}
+                            {this.state.pickedTask.name}
                             <button
                                 onClick={() => {
                                     this.setState({ pickedTask: null });
