@@ -13,7 +13,8 @@ export class TaskPicker extends Component {
                 "Projekt Pomidorek App",
                 "Organizacyjne",
                 "Inne"
-            ]
+            ],
+            newTask: ""
         };
     }
 
@@ -22,11 +23,18 @@ export class TaskPicker extends Component {
             pickedTask: task
         });
     }
+    ś;
 
     handleAddTaskClick = taskName => {
         console.log("Z TaskPickera", taskName);
         console.log(this.state.tasks);
         this.setState({ tasks: [...this.state.tasks, taskName] });
+    };
+
+    handleNewTaskChange = newTaskName => {
+        this.setState({
+            newTask: newTaskName
+        });
     };
 
     renderTasksBtns() {
@@ -70,6 +78,8 @@ export class TaskPicker extends Component {
                     {
                         <TaskManager
                             tasks={this.state.tasks}
+                            newTask={this.state.newTask}
+                            onNewTaskChange={this.handleNewTaskChange}
                             onAddTaskClick={this.handleAddTaskClick}
                         />
                     }

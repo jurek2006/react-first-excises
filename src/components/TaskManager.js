@@ -13,7 +13,11 @@ export class TaskManager extends Component {
                         return <li key={task}>{task}</li>;
                     })}
                 </ul>
-                <TaskAdd onAddTaskClick={this.props.onAddTaskClick} />
+                <TaskAdd
+                    onAddTaskClick={this.props.onAddTaskClick}
+                    newTask={this.props.newTask}
+                    onNewTaskChange={this.props.onNewTaskChange}
+                />
             </div>
         );
     }

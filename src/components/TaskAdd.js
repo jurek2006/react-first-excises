@@ -16,6 +16,10 @@ export class TaskAdd extends Component {
                         name=""
                         id=""
                         placeholder="Nowe zadanie"
+                        value={this.props.newTask}
+                        onChange={e =>
+                            this.props.onNewTaskChange(e.target.value)
+                        }
                     />
                     <input type="submit" value="Dodaj" />
                 </form>
