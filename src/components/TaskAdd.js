@@ -3,7 +3,7 @@ import React, { Component } from "react";
 export class TaskAdd extends Component {
     handleAddTaskClick = e => {
         e.preventDefault();
-        this.props.onAddTaskClick("testTask");
+        this.props.onAddTaskClick();
     };
 
     render() {
@@ -21,7 +21,11 @@ export class TaskAdd extends Component {
                             this.props.onNewTaskChange(e.target.value)
                         }
                     />
-                    <input type="submit" value="Dodaj" />
+                    <input
+                        type="submit"
+                        disabled={this.props.newTask.length <= 0}
+                        value="Dodaj"
+                    />
                 </form>
             </div>
         );

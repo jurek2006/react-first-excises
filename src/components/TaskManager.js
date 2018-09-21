@@ -10,7 +10,7 @@ export class TaskManager extends Component {
                 <h1>Zadania:</h1>
                 <ul>
                     {tasks.map(task => {
-                        return <li key={task}>{task}</li>;
+                        return <li key={task.id}>{task.name}</li>;
                     })}
                 </ul>
                 <TaskAdd

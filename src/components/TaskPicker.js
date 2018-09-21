@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { TaskPickBtn } from "./TaskPickBtn";
 import { TaskManager } from "./TaskManager";
+import uuid from "uuid";
 
 export class TaskPicker extends Component {
     constructor(props) {
@@ -8,11 +9,11 @@ export class TaskPicker extends Component {
         this.state = {
             pickedTask: null,
             tasks: [
-                "Kurs Node",
-                "Kurs React",
-                "Projekt Pomidorek App",
-                "Organizacyjne",
-                "Inne"
+                { name: "Kurs Node", id: uuid() },
+                { name: "Kurs React", id: uuid() },
+                { name: "Projekt Pomidorek App", id: uuid() },
+                { name: "Organizacyjne", id: uuid() },
+                { name: "Inne", id: uuid() }
             ],
             newTask: ""
         };
@@ -23,12 +24,15 @@ export class TaskPicker extends Component {
             pickedTask: task
         });
     }
-    ś;
 
-    handleAddTaskClick = taskName => {
-        console.log("Z TaskPickera", taskName);
-        console.log(this.state.tasks);
-        this.setState({ tasks: [...this.state.tasks, taskName] });
+    handleAddTaskClick = () => {
+        this.setState({
+            tasks: [
+                ...this.state.tasks,
+                { name: this.state.newTask, id: uuid() }
+            ],
+            newTask: ""
+        });
     };
 
     handleNewTaskChange = newTaskName => {
@@ -41,12 +45,12 @@ export class TaskPicker extends Component {
         const { tasks } = this.state;
         return (
             <div>
-                {tasks.map(taskName => (
+                {tasks.map(task => (
                     <TaskPickBtn
-                        taskName={taskName}
-                        key={taskName}
+                        taskName={task.name}
+                        key={task.id}
                         isDisabled={this.state.pickedTask}
-                        onClick={() => this.handleClick(taskName)}
+                        onClick={() => this.handleClick(task.name)}
                     />
                 ))}
             </div>
