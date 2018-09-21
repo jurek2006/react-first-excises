@@ -23,11 +23,11 @@ export class TaskPicker extends Component {
         });
     }
 
-    handleAddTaskClick(taskName) {
+    handleAddTaskClick = taskName => {
         console.log("Z TaskPickera", taskName);
         console.log(this.state.tasks);
         this.setState({ tasks: [...this.state.tasks, taskName] });
-    }
+    };
 
     renderTasksBtns() {
         const { tasks } = this.state;
@@ -70,7 +70,7 @@ export class TaskPicker extends Component {
                     {
                         <TaskManager
                             tasks={this.state.tasks}
-                            onAddTaskClick={this.handleAddTaskClick.bind(this)}
+                            onAddTaskClick={this.handleAddTaskClick}
                         />
                     }
                 </div>

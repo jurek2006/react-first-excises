@@ -2,10 +2,9 @@ import React, { Component } from "react";
 import { TaskAdd } from "./TaskAdd";
 
 export class TaskManager extends Component {
-    handleAddTaskClick(taskName) {
-        console.log("Z managera", taskName);
+    handleAddTaskClick = taskName => {
         this.props.onAddTaskClick(taskName);
-    }
+    };
 
     render() {
         const { tasks } = this.props;
@@ -19,7 +18,7 @@ export class TaskManager extends Component {
                     })}
                 </ul>
                 <TaskAdd
-                    onAddTaskClick={this.handleAddTaskClick.bind(this)}
+                    onAddTaskClick={this.handleAddTaskClick}
                     newTaskName=""
                 />
                 {/* <TaskAdd onAddTaskClick={this.props.onAddTaskClick} /> */}
