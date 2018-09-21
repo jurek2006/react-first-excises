@@ -35,6 +35,17 @@ export class TaskPicker extends Component {
         });
     };
 
+    handleTaskDelete = taskToDeleteId => {
+        const { tasks, pickedTask } = this.state;
+        if (pickedTask && pickedTask.id === taskToDeleteId) {
+            alert("Nie można usunąć aktywnego zadania");
+            return;
+        }
+        this.setState({
+            tasks: tasks.filter(task => task.id !== taskToDeleteId)
+        });
+    };
+
     handleNewTaskChange = newTaskName => {
         this.setState({
             newTask: newTaskName
@@ -83,8 +94,10 @@ export class TaskPicker extends Component {
                         <TaskManager
                             tasks={this.state.tasks}
                             newTask={this.state.newTask}
+                            pickedTask={this.state.pickedTask}
                             onNewTaskChange={this.handleNewTaskChange}
                             onAddTaskClick={this.handleAddTaskClick}
+                            onTaskDelete={this.handleTaskDelete}
                         />
                     }
                 </div>
