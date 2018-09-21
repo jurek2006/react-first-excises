@@ -1,11 +1,16 @@
 import React, { Component } from "react";
 
 export class TaskAdd extends Component {
+    handleAddTaskClick(e) {
+        e.preventDefault();
+        this.props.onAddTaskClick("testTask");
+    }
+
     render() {
         return (
             <div>
                 <h2>Dodaj zadanie</h2>
-                <form onSubmit={this.props.onAddTaskClick}>
+                <form onSubmit={this.handleAddTaskClick.bind(this)}>
                     <input
                         type="text"
                         name=""
