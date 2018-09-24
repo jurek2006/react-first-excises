@@ -1,33 +1,62 @@
 import React, { Component } from "react";
+import { Consumer } from "../context";
 
 export class TaskAdd extends Component {
-    handleAddTaskClick = e => {
+    constructor(props) {
+        super(props);
+        this.state = {
+            newTaskName: ""
+        };
+    }
+
+    handleAddTaskSubmit = (dispatch, e) => {
         e.preventDefault();
-        this.props.onAddTaskClick();
+        dispatch({
+            type: "ADD_TASK",
+            payload: this.state.newTaskName
+        });
+        this.setState({
+            newTaskName: ""
+        });
     };
 
     render() {
+        const { newTaskName } = this.state;
         return (
-            <div>
-                <h2>Dodaj zadanie</h2>
-                <form onSubmit={this.handleAddTaskClick}>
-                    <input
-                        type="text"
-                        name=""
-                        id=""
-                        placeholder="Nowe zadanie"
-                        value={this.props.newTask}
-                        onChange={e =>
-                            this.props.onNewTaskChange(e.target.value)
-                        }
-                    />
-                    <input
-                        type="submit"
-                        disabled={this.props.newTask.length <= 0}
-                        value="Dodaj"
-                    />
-                </form>
-            </div>
+            <Consumer>
+                {value => {
+                    const { dispatch } = value;
+                    return (
+                        <div>
+                            <h2>Dodaj zadanie</h2>
+                            <form
+                                onSubmit={this.handleAddTaskSubmit.bind(
+                                    this,
+                                    dispatch
+                                )}
+                            >
+                                <input
+                                    type="text"
+                                    name=""
+                                    id=""
+                                    placeholder="Nowe zadanie"
+                                    value={newTaskName}
+                                    onChange={e =>
+                                        this.setState({
+                                            newTaskName: e.target.value
+                                        })
+                                    }
+                                />
+                                <input
+                                    type="submit"
+                                    disabled={newTaskName.length <= 0}
+                                    value="Dodaj"
+                                />
+                            </form>
+                        </div>
+                    );
+                }}
+            </Consumer>
         );
     }
 }

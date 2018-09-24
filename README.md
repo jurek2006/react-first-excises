@@ -7,3 +7,4 @@ Including:
 -   setting ancestor component's state from descendants
 -   simple form with fields controlled from ancestor's state
 -   mapping array of objects and adding component for each element
+-   Context Api with context reducer for actions
